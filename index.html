@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>
+    Algebra 1 | Real Number Classification Challenge
+  </title>
+
+  <style>
+    :root {
+      --navy: #0f2d44;
+      --blue: #2f80a8;
+      --light-blue: #f0f7fb;
+      --green: #2f7d46;
+      --light-green: #eefaf1;
+      --yellow: #f2b705;
+      --light-yellow: #fff8e6;
+      --red: #b42318;
+      --light-red: #fff1f0;
+      --purple: #72569a;
+      --light-purple: #f6f1fb;
+      --gray-900: #1f2933;
+      --gray-700: #52606d;
+      --gray-500: #7b8794;
+      --gray-300: #cbd5df;
+      --gray-200: #dfe7ee;
+      --gray-100: #f6f9fb;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(15, 45, 68, 0.12);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #edf3f7;
+      color: var(--gray-900);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 4px solid rgba(242, 183, 5, 0.55);
+      outline-offset: 3px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .app-shell {
+      width: min(1180px, calc(100% - 24px));
+      margin: 20px auto 50px;
+    }
+
+    .hero {
+      padding: 26px;
+      border-radius: var(--radius);
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      font-size: 1.08rem;
+    }
+
+    .status-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .status-item {
+      padding: 12px;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      background: var(--white);
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(15, 45, 68, 0.06);
+    }
+
+    .status-label {
+      display: block;
+      color: var(--gray-700);
+      font-size: 0.79rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-value {
+      display: block;
+      margin-top: 3px;
+      color: var(--navy);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .panel {
+      margin-top: 16px;
+      padding: 22px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .callout {
+      margin: 15px 0;
+      padding: 17px;
+      border-left: 6px solid;
+      border-radius: 9px;
+    }
+
+    .callout h2,
+    .callout h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .callout-blue {
+      border-color: var(--blue);
+      background: var(--light-blue);
+    }
+
+    .callout-green {
+      border-color: var(--green);
+      background: var(--light-green);
+    }
+
+    .callout-yellow {
+      border-color: var(--yellow);
+      background: var(--light-yellow);
+    }
+
+    .callout-red {
+      border-color: var(--red);
+      background: var(--light-red);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .button {
+      min-height: 46px;
+      padding: 11px 18px;
+      border: 2px solid transparent;
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .button-primary:hover {
+      background: #173f5c;
+    }
+
+    .button-secondary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .button-secondary:hover {
+      background: #256a3a;
+    }
+
+    .button-outline {
+      border-color: var(--navy);
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    .button-outline:hover {
+      background: var(--light-blue);
+    }
+
+    .button-danger {
+      border-color: var(--red);
+      background: var(--white);
+      color: var(--red);
+    }
+
+    .button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .name-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 720px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 11px;
+      border: 2px solid var(--gray-300);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--gray-900);
+    }
+
+    .field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .field-help {
+      margin: 5px 0 0;
+      color: var(--gray-700);
+      font-size: 0.9rem;
+    }
+
+    .error-message {
+      min-height: 24px;
+      margin-top: 10px;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .number-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: 72px;
+      padding: 14px;
+      border: 2px dashed var(--blue);
+      border-radius: 10px;
+      background: var(--light-blue);
+    }
+
+    .number-card {
+      display: inline-flex;
+      min-width: 76px;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 13px;
+      border: 2px solid var(--navy);
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--navy);
+      font-size: 1.08rem;
+      font-weight: 700;
+      user-select: none;
+      box-shadow: 0 3px 8px rgba(15, 45, 68, 0.1);
+    }
+
+    .number-card:hover {
+      transform: translateY(-1px);
+    }
+
+    .number-card.selected {
+      border-color: var(--yellow);
+      background: var(--light-yellow);
+      box-shadow: 0 0 0 4px rgba(242, 183, 5, 0.25);
+    }
+
+    .number-card.incorrect {
+      border-color: var(--red);
+      background: var(--light-red);
+    }
+
+    .number-card.correct {
+      border-color: var(--green);
+      background: var(--light-green);
+    }
+
+    .sort-instructions {
+      margin-bottom: 14px;
+    }
+
+    .set-map {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(240px, 0.8fr);
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 16px;
+    }
+
+    .rational-shell,
+    .irrational-zone {
+      border: 3px solid var(--navy);
+      border-radius: 14px;
+      background: var(--light-blue);
+    }
+
+    .set-heading {
+      margin: 0;
+      padding: 12px 14px;
+      border-bottom: 2px solid rgba(15, 45, 68, 0.18);
+      color: var(--navy);
+      font-size: 1.08rem;
+    }
+
+    .rational-content {
+      display: grid;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .rational-noninteger-zone {
+      border: 2px solid var(--blue);
+      background: var(--white);
+    }
+
+    .integer-shell {
+      border: 3px solid #467a52;
+      background: var(--light-green);
+    }
+
+    .integer-nonwhole-zone {
+      border: 2px solid var(--green);
+      background: var(--white);
+    }
+
+    .whole-shell {
+      border: 3px solid #9a7200;
+      background: var(--light-yellow);
+    }
+
+    .whole-only-zone {
+      border: 2px solid var(--yellow);
+      background: var(--white);
+    }
+
+    .natural-zone {
+      border: 3px solid var(--purple);
+      background: var(--light-purple);
+    }
+
+    .irrational-zone {
+      background: var(--light-purple);
+      border-color: var(--purple);
+    }
+
+    .drop-zone,
+    .nested-shell {
+      border-radius: 11px;
+    }
+
+    .nested-shell {
+      padding: 10px;
+    }
+
+    .drop-zone {
+      min-height: 96px;
+      padding: 10px;
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .drop-zone.drag-over,
+    .drop-zone.keyboard-target {
+      box-shadow: inset 0 0 0 4px rgba(47, 128, 168, 0.3);
+    }
+
+    .drop-zone-title {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .drop-zone-subtitle {
+      display: block;
+      margin: -5px 0 8px;
+      color: var(--gray-700);
+      font-size: 0.82rem;
+    }
+
+    .drop-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 46px;
+    }
+
+    .category-help {
+      margin: 4px 0 0;
+      color: var(--gray-700);
+      font-size: 0.85rem;
+    }
+
+    .feedback-box {
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .feedback-neutral {
+      border-left: 6px solid var(--blue);
+      background: var(--light-blue);
+      color: var(--navy);
+    }
+
+    .feedback-success {
+      border-left: 6px solid var(--green);
+      background: var(--light-green);
+      color: #1e5b32;
+    }
+
+    .feedback-error {
+      border-left: 6px solid var(--red);
+      background: var(--light-red);
+      color: #86170f;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 16px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--gray-200);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--green);
+      transition: width 0.2s ease;
+    }
+
+    .explanation-card {
+      margin: 16px 0;
+      padding: 18px;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      background: var(--gray-100);
+    }
+
+    .explanation-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 9px;
+      margin: 12px 0;
+    }
+
+    .choice {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 10px;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .choice input {
+      margin-top: 4px;
+    }
+
+    .attestation {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 8px;
+      background: var(--light-yellow);
+    }
+
+    .certificate {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border: 8px double var(--navy);
+      border-radius: 14px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .certificate::before {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      content: "";
+      pointer-events: none;
+    }
+
+    .certificate-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .certificate-kicker {
+      margin: 0;
+      color: var(--green);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .certificate h2 {
+      margin: 8px 0;
+      color: var(--navy);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      text-align: center;
+    }
+
+    .certificate-name {
+      margin: 18px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--navy);
+      color: var(--navy);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .certificate-statement {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      text-align: center;
+    }
+
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 20px;
+      max-width: 760px;
+      margin: 20px auto;
+    }
+
+    .certificate-data {
+      padding: 9px;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .certificate-data strong {
+      color: var(--navy);
+    }
+
+    .verification-box {
+      max-width: 760px;
+      margin: 20px auto 0;
+      padding: 12px;
+      border: 2px dashed var(--green);
+      border-radius: 8px;
+      background: var(--light-green);
+      text-align: center;
+    }
+
+    .verification-code {
+      display: block;
+      margin-top: 4px;
+      font-family: "Courier New", monospace;
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .submission-reminder {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .screen-reader-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 850px) {
+      .set-map {
+        grid-template-columns: 1fr;
+      }
+
+      .status-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app-shell {
+        width: min(100% - 12px, 1180px);
+        margin-top: 6px;
+      }
+
+      .hero,
+      .panel,
+      .certificate {
+        padding: 17px;
+      }
+
+      .name-grid,
+      .certificate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .number-card {
+        min-width: 66px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: letter portrait;
+        margin: 0.4in;
+      }
+
+      body {
+        background: var(--white);
+      }
+
+      body * {
+        visibility: hidden !important;
+      }
+
+      #completionScreen,
+      #completionScreen * {
+        visibility: visible !important;
+      }
+
+      #completionScreen {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .certificate {
+        min-height: 9.4in;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="hero no-print">
+      <h1>
+        Algebra 1 | Unit 1 | Week 1
+      </h1>
+
+      <p>
+        Prove It! — Real Number Classification Challenge
+      </p>
+    </header>
+
+    <div
+      id="liveStatus"
+      class="screen-reader-only"
+      aria-live="polite"
+    ></div>
+
+    <section
+      id="welcomeScreen"
+      class="panel"
+    >
+      <div class="callout callout-blue">
+        <h2>
+          Demonstrate Your Mastery
+        </h2>
+
+        <p>
+          You will sort 15 randomly generated values into a nested
+          real-number diagram. Each value must be placed in its
+          <strong>most specific</strong> set.
+        </p>
+      </div>
+
+      <div class="callout callout-green">
+        <h3>
+          Classification Rules for This Activity
+        </h3>
+
+        <ul>
+          <li>
+            <strong>Natural:</strong> 1, 2, 3, ...
+          </li>
+
+          <li>
+            <strong>Whole:</strong> 0, 1, 2, 3, ...
+          </li>
+
+          <li>
+            <strong>Integer:</strong> ..., -2, -1, 0, 1, 2, ...
+          </li>
+
+          <li>
+            <strong>Rational:</strong> Can be written as a fraction
+            of two integers with a nonzero denominator.
+          </li>
+
+          <li>
+            <strong>Irrational:</strong> Cannot be written as a
+            fraction of two integers.
+          </li>
+        </ul>
+
+        <p>
+          Because the sets are nested, a natural number is also whole,
+          integer, rational, and real. Place it in
+          <strong>Natural</strong> because that is its most specific set.
+        </p>
+      </div>
+
+      <div class="callout callout-yellow">
+        <h3>
+          Completion Requirements
+        </h3>
+
+        <p>
+          You must correctly classify all 15 values and complete two
+          explanation questions. The completion certificate will not
+          appear until both parts are complete.
+        </p>
+      </div>
+
+      <div class="name-grid">
+        <div class="field">
+          <label for="firstName">
+            First name
+          </label>
+
+          <input
+            id="firstName"
+            type="text"
+            autocomplete="given-name"
+            maxlength="40"
+          >
+        </div>
+
+        <div class="field">
+          <label for="lastName">
+            Last name
+          </label>
+
+          <input
+            id="lastName"
+            type="text"
+            autocomplete="family-name"
+            maxlength="40"
+          >
+        </div>
+      </div>
+
+      <div
+        id="welcomeError"
+        class="error-message"
+        role="alert"
+      ></div>
+
+      <div class="button-row">
+        <button
+          id="beginButton"
+          class="button button-primary"
+          type="button"
+        >
+          Begin My Prove It!
+        </button>
+      </div>
+    </section>
+
+    <section
+      id="activityScreen"
+      class="hidden"
+    >
+      <div class="status-bar no-print">
+        <div class="status-item">
+          <span class="status-label">
+            Student
+          </span>
+
+          <span
+            id="studentNameStatus"
+            class="status-value"
+          ></span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-label">
+            Elapsed Time
+          </span>
+
+          <span
+            id="elapsedStatus"
+            class="status-value"
+          >
+            00:00
+          </span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-label">
+            Sort Checks
+          </span>
+
+          <span
+            id="checksStatus"
+            class="status-value"
+          >
+            0
+          </span>
+        </div>
+
+        <div class="status-item">
+          <span class="status-label">
+            Progress
+          </span>
+
+          <span
+            id="progressStatus"
+            class="status-value"
+          >
+            Sorting
+          </span>
+        </div>
+      </div>
+
+      <section
+        id="sortingPanel"
+        class="panel"
+      >
+        <h2>
+          Part 1: Sort the Real Numbers
+        </h2>
+
+        <div class="sort-instructions callout callout-blue">
+          <p>
+            Drag each card into its most specific region. On a
+            touch screen or with a keyboard, select a card and then
+            select a category.
+          </p>
+
+          <p>
+            All cards must leave the number bank before you can check
+            your work.
+          </p>
+        </div>
+
+        <h3>
+          Number Bank
+        </h3>
+
+        <div
+          id="numberBank"
+          class="number-bank"
+          data-zone="bank"
+          aria-label="Unsorted number bank"
+        ></div>
+
+        <div class="set-map">
+          <section
+            class="rational-shell"
+            aria-labelledby="rationalHeading"
+          >
+            <h3
+              id="rationalHeading"
+              class="set-heading"
+            >
+              Rational Numbers
+            </h3>
+
+            <div class="rational-content">
+              <div
+                class="drop-zone rational-noninteger-zone"
+                data-category="rational"
+                tabindex="0"
+                role="button"
+                aria-label="Place selected card in rational numbers"
+              >
+                <span class="drop-zone-title">
+                  Rational, but not an Integer
+                </span>
+
+                <span class="drop-zone-subtitle">
+                  Fractions, terminating decimals, and repeating decimals
+                </span>
+
+                <div
+                  class="drop-items"
+                  data-items-for="rational"
+                ></div>
+              </div>
+
+              <section class="nested-shell integer-shell">
+                <h3 class="set-heading">
+                  Integers
+                </h3>
+
+                <div
+                  class="drop-zone integer-nonwhole-zone"
+                  data-category="integer"
+                  tabindex="0"
+                  role="button"
+                  aria-label="Place selected card in integers"
+                >
+                  <span class="drop-zone-title">
+                    Integer, but not Whole
+                  </span>
+
+                  <span class="drop-zone-subtitle">
+                    Negative integers
+                  </span>
+
+                  <div
+                    class="drop-items"
+                    data-items-for="integer"
+                  ></div>
+                </div>
+
+                <section class="nested-shell whole-shell">
+                  <h3 class="set-heading">
+                    Whole Numbers
+                  </h3>
+
+                  <div
+                    class="drop-zone whole-only-zone"
+                    data-category="whole"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Place selected card in whole numbers"
+                  >
+                    <span class="drop-zone-title">
+                      Whole, but not Natural
+                    </span>
+
+                    <span class="drop-zone-subtitle">
+                      Zero
+                    </span>
+
+                    <div
+                      class="drop-items"
+                      data-items-for="whole"
+                    ></div>
+                  </div>
+
+                  <div
+                    class="drop-zone natural-zone"
+                    data-category="natural"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Place selected card in natural numbers"
+                  >
+                    <span class="drop-zone-title">
+                      Natural Numbers
+                    </span>
+
+                    <span class="drop-zone-subtitle">
+                      Positive counting numbers: 1, 2, 3, ...
+                    </span>
+
+                    <div
+                      class="drop-items"
+                      data-items-for="natural"
+                    ></div>
+                  </div>
+                </section>
+              </section>
+            </div>
+          </section>
+
+          <section
+            class="irrational-zone"
+            aria-labelledby="irrationalHeading"
+          >
+            <h3
+              id="irrationalHeading"
+              class="set-heading"
+            >
+              Irrational Numbers
+            </h3>
+
+            <div
+              class="drop-zone"
+              data-category="irrational"
+              tabindex="0"
+              role="button"
+              aria-label="Place selected card in irrational numbers"
+            >
+              <span class="drop-zone-title">
+                Irrational
+              </span>
+
+              <span class="drop-zone-subtitle">
+                Nonterminating, nonrepeating decimals
+              </span>
+
+              <div
+                class="drop-items"
+                data-items-for="irrational"
+              ></div>
+            </div>
+          </section>
+        </div>
+
+        <div
+          id="sortFeedback"
+          class="feedback-box feedback-neutral"
+          role="status"
+          aria-live="polite"
+        >
+          Sort all 15 cards, and then check your work.
+        </div>
+
+        <div class="button-row no-print">
+          <button
+            id="returnSelectedButton"
+            class="button button-outline"
+            type="button"
+            disabled
+          >
+            Return Selected Card to Bank
+          </button>
+
+          <button
+            id="checkSortButton"
+            class="button button-secondary"
+            type="button"
+          >
+            Check My Sort
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="explanationPanel"
+        class="panel hidden"
+      >
+        <h2>
+          Part 2: Explain Your Reasoning
+        </h2>
+
+        <div class="callout callout-green">
+          <p>
+            Your sort is perfect. Complete both explanation questions
+            to demonstrate that you understand why the classifications
+            are correct.
+          </p>
+        </div>
+
+        <div
+          id="explanationOne"
+          class="explanation-card"
+        ></div>
+
+        <div
+          id="explanationTwo"
+          class="explanation-card"
+        ></div>
+
+        <label class="attestation">
+          <input
+            id="attestationCheckbox"
+            type="checkbox"
+          >
+
+          <span>
+            I confirm that these explanations are my own mathematical
+            reasoning.
+          </span>
+        </label>
+
+        <div
+          id="explanationFeedback"
+          class="feedback-box feedback-neutral"
+          role="status"
+          aria-live="polite"
+        >
+          Answer both questions and write a complete explanation for each.
+        </div>
+
+        <div class="button-row no-print">
+          <button
+            id="submitExplanationButton"
+            class="button button-secondary"
+            type="button"
+          >
+            Submit My Explanations
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <section
+      id="completionScreen"
+      class="panel hidden"
+    >
+      <div
+        id="certificate"
+        class="certificate"
+      >
+        <div class="certificate-content">
+          <p class="certificate-kicker">
+            Algebra 1 Mastery Evidence
+          </p>
+
+          <h2>
+            Real Number Classification Challenge
+          </h2>
+
+          <p class="certificate-statement">
+            This certificate confirms that the student named below
+            correctly classified all randomized values into their
+            most specific real-number sets and completed the required
+            mathematical explanations.
+          </p>
+
+          <div
+            id="certificateName"
+            class="certificate-name"
+          ></div>
+
+          <div class="certificate-grid">
+            <div class="certificate-data">
+              <strong>Date:</strong>
+              <span id="certificateDate"></span>
+            </div>
+
+            <div class="certificate-data">
+              <strong>Activity Version:</strong>
+              <span id="certificateVersion"></span>
+            </div>
+
+            <div class="certificate-data">
+              <strong>Started:</strong>
+              <span id="certificateStart"></span>
+            </div>
+
+            <div class="certificate-data">
+              <strong>Completed:</strong>
+              <span id="certificateCompleted"></span>
+            </div>
+
+            <div class="certificate-data">
+              <strong>Completion Time:</strong>
+              <span id="certificateElapsed"></span>
+            </div>
+
+            <div class="certificate-data">
+              <strong>Sort Checks:</strong>
+              <span id="certificateChecks"></span>
+            </div>
+
+            <div class="certificate-data">
+              <strong>Classification:</strong>
+              15 of 15 correct
+            </div>
+
+            <div class="certificate-data">
+              <strong>Explanations:</strong>
+              2 of 2 completed
+            </div>
+          </div>
+
+          <div class="verification-box">
+            <strong>
+              Completion Verification Code
+            </strong>
+
+            <span
+              id="certificateCode"
+              class="verification-code"
+            ></span>
+          </div>
+
+          <p class="submission-reminder">
+            Save this page as a PDF or take a clear screenshot, then
+            submit it to the Unit 1 Week 1 Prove It! assignment in Canvas.
+          </p>
+        </div>
+      </div>
+
+      <div class="button-row no-print">
+        <button
+          id="printButton"
+          class="button button-primary"
+          type="button"
+        >
+          Print or Save as PDF
+        </button>
+
+        <button
+          id="newAttemptButton"
+          class="button button-danger"
+          type="button"
+        >
+          Start a New Attempt
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    "use strict";
+
+    const ACTIVITY_VERSION = "U1W1-RNC-1.0";
+    const STORAGE_KEY = "algebra1-u1w1-real-number-prove-it";
+
+    const state = {
+      studentName: "",
+      firstName: "",
+      lastName: "",
+      startedAt: null,
+      completedAt: null,
+      checks: 0,
+      cards: [],
+      selectedCardId: null,
+      sortComplete: false,
+      explanationsComplete: false,
+      explanationPrompts: [],
+      timerId: null
+    };
+
+    const welcomeScreen =
+      document.getElementById("welcomeScreen");
+
+    const activityScreen =
+      document.getElementById("activityScreen");
+
+    const sortingPanel =
+      document.getElementById("sortingPanel");
+
+    const explanationPanel =
+      document.getElementById("explanationPanel");
+
+    const completionScreen =
+      document.getElementById("completionScreen");
+
+    const firstNameInput =
+      document.getElementById("firstName");
+
+    const lastNameInput =
+      document.getElementById("lastName");
+
+    const welcomeError =
+      document.getElementById("welcomeError");
+
+    const beginButton =
+      document.getElementById("beginButton");
+
+    const studentNameStatus =
+      document.getElementById("studentNameStatus");
+
+    const elapsedStatus =
+      document.getElementById("elapsedStatus");
+
+    const checksStatus =
+      document.getElementById("checksStatus");
+
+    const progressStatus =
+      document.getElementById("progressStatus");
+
+    const numberBank =
+      document.getElementById("numberBank");
+
+    const sortFeedback =
+      document.getElementById("sortFeedback");
+
+    const checkSortButton =
+      document.getElementById("checkSortButton");
+
+    const returnSelectedButton =
+      document.getElementById("returnSelectedButton");
+
+    const explanationOne =
+      document.getElementById("explanationOne");
+
+    const explanationTwo =
+      document.getElementById("explanationTwo");
+
+    const explanationFeedback =
+      document.getElementById("explanationFeedback");
+
+    const attestationCheckbox =
+      document.getElementById("attestationCheckbox");
+
+    const submitExplanationButton =
+      document.getElementById("submitExplanationButton");
+
+    const printButton =
+      document.getElementById("printButton");
+
+    const newAttemptButton =
+      document.getElementById("newAttemptButton");
+
+    const liveStatus =
+      document.getElementById("liveStatus");
+
+    const categories = [
+      "natural",
+      "whole",
+      "integer",
+      "rational",
+      "irrational"
+    ];
+
+    const categoryLabels = {
+      natural: "Natural Numbers",
+      whole: "Whole Numbers",
+      integer: "Integers",
+      rational: "Rational Numbers",
+      irrational: "Irrational Numbers",
+      bank: "Number Bank"
+    };
+
+    function randomInteger(min, max) {
+      return Math.floor(
+        Math.random() * (max - min + 1)
+      ) + min;
+    }
+
+    function shuffle(array) {
+      const copy = [...array];
+
+      for (
+        let index = copy.length - 1;
+        index > 0;
+        index -= 1
+      ) {
+        const randomIndex =
+          Math.floor(Math.random() * (index + 1));
+
+        [
+          copy[index],
+          copy[randomIndex]
+        ] = [
+          copy[randomIndex],
+          copy[index]
+        ];
+      }
+
+      return copy;
+    }
+
+    function greatestCommonFactor(a, b) {
+      let first = Math.abs(a);
+      let second = Math.abs(b);
+
+      while (second !== 0) {
+        const remainder = first % second;
+        first = second;
+        second = remainder;
+      }
+
+      return first;
+    }
+
+    function makeNaturalCard(index) {
+      const value = randomInteger(1, 40);
+
+      return {
+        id: `natural-${index}-${value}`,
+        display: String(value),
+        accessibleText: String(value),
+        category: "natural",
+        location: "bank",
+        explanation:
+          `${value} is a positive counting number.`
+      };
+    }
+
+    function makeWholeCard(index) {
+      return {
+        id: `whole-${index}-zero`,
+        display: "0",
+        accessibleText: "zero",
+        category: "whole",
+        location: "bank",
+        explanation:
+          "Zero is a whole number but is not treated as a natural number in this activity."
+      };
+    }
+
+    function makeIntegerCard(index) {
+      const value = -randomInteger(1, 30);
+
+      return {
+        id: `integer-${index}-${Math.abs(value)}`,
+        display: String(value),
+        accessibleText: String(value),
+        category: "integer",
+        location: "bank",
+        explanation:
+          `${value} is a negative integer.`
+      };
+    }
+
+    function makeFractionCard(index) {
+      let numerator;
+      let denominator;
+
+      do {
+        numerator = randomInteger(-18, 18);
+        denominator = randomInteger(2, 12);
+      } while (
+        numerator === 0 ||
+        numerator % denominator === 0 ||
+        greatestCommonFactor(
+          numerator,
+          denominator
+        ) !== 1
+      );
+
+      return {
+        id:
+          `fraction-${index}-${numerator}-${denominator}`,
+        display:
+          `<span aria-hidden="true">${numerator}/${denominator}</span>`,
+        accessibleText:
+          `${numerator} divided by ${denominator}`,
+        category: "rational",
+        location: "bank",
+        explanation:
+          `${numerator}/${denominator} is a ratio of two integers with a nonzero denominator.`
+      };
+    }
+
+    function makeTerminatingDecimalCard(index) {
+      const tenths = randomInteger(1, 9);
+      const hundredths = randomInteger(1, 9);
+      const sign = Math.random() < 0.4 ? -1 : 1;
+      const value =
+        sign * (
+          randomInteger(0, 8) +
+          tenths / 10 +
+          hundredths / 100
+        );
+
+      const display =
+        Number(value.toFixed(2)).toString();
+
+      return {
+        id: `decimal-${index}-${display.replace(".", "-")}`,
+        display,
+        accessibleText: display,
+        category: "rational",
+        location: "bank",
+        explanation:
+          `${display} is a terminating decimal, so it can be written as a fraction.`
+      };
+    }
+
+    function makeRepeatingDecimalCard(index) {
+      const whole = randomInteger(0, 5);
+      const digit = randomInteger(1, 9);
+      const sign = Math.random() < 0.35 ? "-" : "";
+      const display =
+        `${sign}${whole}.<span style="text-decoration:overline;">${digit}</span>`;
+
+      return {
+        id: `repeating-${index}-${sign}${whole}-${digit}`,
+        display,
+        accessibleText:
+          `${sign}${whole} point ${digit} repeating`,
+        category: "rational",
+        location: "bank",
+        explanation:
+          "A repeating decimal can be written as a fraction, so it is rational."
+      };
+    }
+
+    function makeRadicalCard(index) {
+      const nonPerfectSquares = [
+        2, 3, 5, 6, 7, 10, 11, 13,
+        14, 15, 17, 19, 21, 22, 23,
+        26, 29, 30, 31, 33, 34, 35
+      ];
+
+      const radicand =
+        nonPerfectSquares[
+          randomInteger(
+            0,
+            nonPerfectSquares.length - 1
+          )
+        ];
+
+      return {
+        id: `radical-${index}-${radicand}`,
+        display: `√${radicand}`,
+        accessibleText: `square root of ${radicand}`,
+        category: "irrational",
+        location: "bank",
+        explanation:
+          `${radicand} is not a perfect square, so its square root is irrational.`
+      };
+    }
+
+    function makePiCard(index) {
+      const coefficient = randomInteger(1, 6);
+      const display =
+        coefficient === 1
+          ? "π"
+          : `${coefficient}π`;
+
+      return {
+        id: `pi-${index}-${coefficient}`,
+        display,
+        accessibleText:
+          coefficient === 1
+            ? "pi"
+            : `${coefficient} times pi`,
+        category: "irrational",
+        location: "bank",
+        explanation:
+          `${display} is irrational because a nonzero rational multiple of π is irrational.`
+      };
+    }
+
+    function makeIrrationalDecimalCard(index) {
+      const examples = [
+        {
+          display: "0.1010010001…",
+          accessibleText:
+            "zero point one zero one zero zero one zero zero zero one continuing",
+          explanation:
+            "The decimal does not terminate and does not repeat in a fixed pattern."
+        },
+        {
+          display: "1.41421356…",
+          accessibleText:
+            "one point four one four two one three five six continuing",
+          explanation:
+            "This nonterminating, nonrepeating decimal is irrational."
+        },
+        {
+          display: "2.7182818…",
+          accessibleText:
+            "two point seven one eight two eight one eight continuing",
+          explanation:
+            "This nonterminating, nonrepeating decimal is irrational."
+        }
+      ];
+
+      const selected =
+        examples[
+          randomInteger(0, examples.length - 1)
+        ];
+
+      return {
+        id: `irrational-decimal-${index}`,
+        display: selected.display,
+        accessibleText: selected.accessibleText,
+        category: "irrational",
+        location: "bank",
+        explanation: selected.explanation
+      };
+    }
+
+    function ensureUniqueCards(cards) {
+      const usedDisplays = new Set();
+      const uniqueCards = [];
+
+      cards.forEach(card => {
+        const plainDisplay =
+          card.display.replace(/<[^>]*>/g, "");
+
+        if (!usedDisplays.has(plainDisplay)) {
+          usedDisplays.add(plainDisplay);
+          uniqueCards.push(card);
+        }
+      });
+
+      return uniqueCards;
+    }
+
+    function generateCards() {
+      let cards = [];
+
+      while (cards.length < 15) {
+        const batch = [
+          makeNaturalCard(cards.length),
+          makeNaturalCard(cards.length + 1),
+          makeNaturalCard(cards.length + 2),
+          makeWholeCard(cards.length + 3),
+          makeIntegerCard(cards.length + 4),
+          makeIntegerCard(cards.length + 5),
+          makeIntegerCard(cards.length + 6),
+          makeFractionCard(cards.length + 7),
+          makeFractionCard(cards.length + 8),
+          makeTerminatingDecimalCard(cards.length + 9),
+          makeRepeatingDecimalCard(cards.length + 10),
+          makeRadicalCard(cards.length + 11),
+          makeRadicalCard(cards.length + 12),
+          makePiCard(cards.length + 13),
+          makeIrrationalDecimalCard(cards.length + 14)
+        ];
+
+        cards = ensureUniqueCards([
+          ...cards,
+          ...batch
+        ]).slice(0, 15);
+      }
+
+      return shuffle(cards);
+    }
+
+    function createCardElement(card) {
+      const element =
+        document.createElement("button");
+
+      element.type = "button";
+      element.className = "number-card";
+      element.draggable = true;
+      element.dataset.cardId = card.id;
+      element.setAttribute(
+        "aria-label",
+        `${card.accessibleText}. Select to move this value.`
+      );
+      element.innerHTML = card.display;
+
+      element.addEventListener(
+        "click",
+        () => selectCard(card.id)
+      );
+
+      element.addEventListener(
+        "dragstart",
+        event => {
+          event.dataTransfer.setData(
+            "text/plain",
+            card.id
+          );
+
+          event.dataTransfer.effectAllowed = "move";
+          selectCard(card.id);
+        }
+      );
+
+      return element;
+    }
+
+    function renderCards() {
+      numberBank.innerHTML = "";
+
+      document
+        .querySelectorAll("[data-items-for]")
+        .forEach(container => {
+          container.innerHTML = "";
+        });
+
+      state.cards.forEach(card => {
+        const element =
+          createCardElement(card);
+
+        if (card.location === "bank") {
+          numberBank.appendChild(element);
+        } else {
+          const destination =
+            document.querySelector(
+              `[data-items-for="${card.location}"]`
+            );
+
+          destination.appendChild(element);
+        }
+
+        if (card.id === state.selectedCardId) {
+          element.classList.add("selected");
+        }
+      });
+
+      returnSelectedButton.disabled =
+        state.selectedCardId === null;
+
+      saveState();
+    }
+
+    function selectCard(cardId) {
+      state.selectedCardId =
+        state.selectedCardId === cardId
+          ? null
+          : cardId;
+
+      renderCards();
+
+      if (state.selectedCardId) {
+        const selectedCard =
+          state.cards.find(
+            card => card.id === state.selectedCardId
+          );
+
+        announce(
+          `${selectedCard.accessibleText} selected. Choose a category.`
+        );
+      } else {
+        announce("Card selection cleared.");
+      }
+    }
+
+    function moveCard(cardId, location) {
+      const card =
+        state.cards.find(item => item.id === cardId);
+
+      if (!card) {
+        return;
+      }
+
+      card.location = location;
+      state.selectedCardId = null;
+      clearCardFeedbackStyles();
+      renderCards();
+
+      announce(
+        `${card.accessibleText} moved to ${categoryLabels[location]}.`
+      );
+    }
+
+    function setupDropZones() {
+      const zones = [
+        numberBank,
+        ...document.querySelectorAll(".drop-zone")
+      ];
+
+      zones.forEach(zone => {
+        zone.addEventListener(
+          "dragover",
+          event => {
+            event.preventDefault();
+            zone.classList.add("drag-over");
+          }
+        );
+
+        zone.addEventListener(
+          "dragleave",
+          () => {
+            zone.classList.remove("drag-over");
+          }
+        );
+
+        zone.addEventListener(
+          "drop",
+          event => {
+            event.preventDefault();
+            zone.classList.remove("drag-over");
+
+            const cardId =
+              event.dataTransfer.getData("text/plain");
+
+            const destination =
+              zone === numberBank
+                ? "bank"
+                : zone.dataset.category;
+
+            moveCard(cardId, destination);
+          }
+        );
+
+        zone.addEventListener(
+          "click",
+          event => {
+            if (
+              event.target.closest(".number-card")
+            ) {
+              return;
+            }
+
+            if (!state.selectedCardId) {
+              return;
+            }
+
+            const destination =
+              zone === numberBank
+                ? "bank"
+                : zone.dataset.category;
+
+            moveCard(
+              state.selectedCardId,
+              destination
+            );
+          }
+        );
+
+        zone.addEventListener(
+          "keydown",
+          event => {
+            if (
+              event.key !== "Enter" &&
+              event.key !== " "
+            ) {
+              return;
+            }
+
+            event.preventDefault();
+
+            if (!state.selectedCardId) {
+              announce(
+                "Select a number card first."
+              );
+              return;
+            }
+
+            const destination =
+              zone === numberBank
+                ? "bank"
+                : zone.dataset.category;
+
+            moveCard(
+              state.selectedCardId,
+              destination
+            );
+          }
+        );
+      });
+    }
+
+    function clearCardFeedbackStyles() {
+      document
+        .querySelectorAll(".number-card")
+        .forEach(cardElement => {
+          cardElement.classList.remove(
+            "correct",
+            "incorrect"
+          );
+        });
+    }
+
+    function setSortFeedback(message, type) {
+      sortFeedback.className =
+        `feedback-box feedback-${type}`;
+
+      sortFeedback.textContent = message;
+    }
+
+    function markCardResults() {
+      state.cards.forEach(card => {
+        const element =
+          document.querySelector(
+            `[data-card-id="${card.id}"]`
+          );
+
+        if (!element) {
+          return;
+        }
+
+        element.classList.remove(
+          "correct",
+          "incorrect"
+        );
+
+        if (card.location === card.category) {
+          element.classList.add("correct");
+        } else {
+          element.classList.add("incorrect");
+        }
+      });
+    }
+
+    function checkSort() {
+      const unsorted =
+        state.cards.filter(
+          card => card.location === "bank"
+        );
+
+      if (unsorted.length > 0) {
+        setSortFeedback(
+          `Move all cards out of the number bank. ${unsorted.length} card${unsorted.length === 1 ? " remains" : "s remain"}.`,
+          "error"
+        );
+
+        announce(sortFeedback.textContent);
+        return;
+      }
+
+      state.checks += 1;
+      checksStatus.textContent =
+        String(state.checks);
+
+      const incorrect =
+        state.cards.filter(
+          card => card.location !== card.category
+        );
+
+      markCardResults();
+
+      if (incorrect.length > 0) {
+        setSortFeedback(
+          `${incorrect.length} card${incorrect.length === 1 ? " is" : "s are"} not in the most specific set. Incorrect cards are outlined in red. Correct those cards and check again.`,
+          "error"
+        );
+
+        announce(sortFeedback.textContent);
+        saveState();
+        return;
+      }
+
+      state.sortComplete = true;
+
+      setSortFeedback(
+        "Perfect sort! All 15 values are in their most specific real-number sets.",
+        "success"
+      );
+
+      progressStatus.textContent =
+        "Explanations";
+
+      checkSortButton.disabled = true;
+
+      document
+        .querySelectorAll(".number-card")
+        .forEach(element => {
+          element.disabled = true;
+          element.draggable = false;
+        });
+
+      buildExplanationPrompts();
+      explanationPanel.classList.remove("hidden");
+      explanationPanel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      saveState();
+    }
+
+    function chooseCardByCategory(category) {
+      const options =
+        state.cards.filter(
+          card => card.category === category
+        );
+
+      return options[
+        randomInteger(0, options.length - 1)
+      ];
+    }
+
+    function buildExplanationPrompts() {
+      const rationalCard =
+        chooseCardByCategory("rational");
+
+      const irrationalCard =
+        chooseCardByCategory("irrational");
+
+      state.explanationPrompts = [
+        {
+          id: "explanation-1",
+          card: rationalCard,
+          prompt:
+            `Why is ${rationalCard.accessibleText} classified as rational rather than irrational?`,
+          choices: shuffle([
+            {
+              text:
+                "It can be written as a ratio of two integers with a nonzero denominator.",
+              correct: true
+            },
+            {
+              text:
+                "It is rational only because it is positive.",
+              correct: false
+            },
+            {
+              text:
+                "Every decimal or fraction is irrational.",
+              correct: false
+            }
+          ]),
+          requiredKeywords: [
+            "fraction",
+            "ratio",
+            "integer",
+            "terminat",
+            "repeat",
+            "rational"
+          ]
+        },
+        {
+          id: "explanation-2",
+          card: irrationalCard,
+          prompt:
+            `Why is ${irrationalCard.accessibleText} classified as irrational?`,
+          choices: shuffle([
+            {
+              text:
+                "It cannot be written as a ratio of two integers, and its decimal form does not terminate or repeat.",
+              correct: true
+            },
+            {
+              text:
+                "It is irrational because every square root and every decimal is irrational.",
+              correct: false
+            },
+            {
+              text:
+                "It is irrational only because its value is not a whole number.",
+              correct: false
+            }
+          ]),
+          requiredKeywords: [
+            "cannot",
+            "not",
+            "fraction",
+            "ratio",
+            "nontermin",
+            "nonrepeat",
+            "irrational",
+            "perfect square",
+            "pi"
+          ]
+        }
+      ];
+
+      renderExplanation(
+        explanationOne,
+        state.explanationPrompts[0],
+        1
+      );
+
+      renderExplanation(
+        explanationTwo,
+        state.explanationPrompts[1],
+        2
+      );
+    }
+
+    function renderExplanation(
+      container,
+      promptData,
+      questionNumber
+    ) {
+      const choicesHtml =
+        promptData.choices
+          .map(
+            (choice, index) => `
+              <label class="choice">
+                <input
+                  type="radio"
+                  name="${promptData.id}-choice"
+                  value="${index}"
+                >
+                <span>${choice.text}</span>
+              </label>
+            `
+          )
+          .join("");
+
+      container.innerHTML = `
+        <h3>
+          Explanation ${questionNumber}
+        </h3>
+
+        <p>
+          <strong>${promptData.prompt}</strong>
+        </p>
+
+        <div
+          class="choice-list"
+          role="radiogroup"
+          aria-label="Explanation ${questionNumber} reasoning choice"
+        >
+          ${choicesHtml}
+        </div>
+
+        <div class="field">
+          <label for="${promptData.id}-text">
+            Explain the classification in your own words.
+          </label>
+
+          <textarea
+            id="${promptData.id}-text"
+            maxlength="500"
+            placeholder="Use a complete sentence and include the mathematical reason."
+          ></textarea>
+
+          <p class="field-help">
+            Write at least 30 characters. Naming the set alone is not enough.
+          </p>
+        </div>
+      `;
+    }
+
+    function normalizeText(text) {
+      return text
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function validateExplanation(promptData) {
+      const selectedChoice =
+        document.querySelector(
+          `input[name="${promptData.id}-choice"]:checked`
+        );
+
+      const textarea =
+        document.getElementById(
+          `${promptData.id}-text`
+        );
+
+      const response =
+        normalizeText(textarea.value);
+
+      if (!selectedChoice) {
+        return {
+          valid: false,
+          message:
+            "Select the mathematical statement that best explains the classification."
+        };
+      }
+
+      const selectedIndex =
+        Number(selectedChoice.value);
+
+      if (
+        !promptData.choices[selectedIndex].correct
+      ) {
+        return {
+          valid: false,
+          message:
+            "Review the definition of the number set and choose a more accurate statement."
+        };
+      }
+
+      if (response.length < 30) {
+        return {
+          valid: false,
+          message:
+            "Expand your written explanation to at least 30 characters."
+        };
+      }
+
+      const includesKeyword =
+        promptData.requiredKeywords.some(
+          keyword => response.includes(keyword)
+        );
+
+      if (!includesKeyword) {
+        return {
+          valid: false,
+          message:
+            "Include a mathematical reason, such as a fraction, ratio, decimal behavior, perfect square, or π."
+        };
+      }
+
+      return {
+        valid: true,
+        message: ""
+      };
+    }
+
+    function setExplanationFeedback(
+      message,
+      type
+    ) {
+      explanationFeedback.className =
+        `feedback-box feedback-${type}`;
+
+      explanationFeedback.textContent =
+        message;
+    }
+
+    function submitExplanations() {
+      const firstResult =
+        validateExplanation(
+          state.explanationPrompts[0]
+        );
+
+      const secondResult =
+        validateExplanation(
+          state.explanationPrompts[1]
+        );
+
+      if (!firstResult.valid) {
+        setExplanationFeedback(
+          `Explanation 1: ${firstResult.message}`,
+          "error"
+        );
+
+        announce(
+          explanationFeedback.textContent
+        );
+
+        explanationOne.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        return;
+      }
+
+      if (!secondResult.valid) {
+        setExplanationFeedback(
+          `Explanation 2: ${secondResult.message}`,
+          "error"
+        );
+
+        announce(
+          explanationFeedback.textContent
+        );
+
+        explanationTwo.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        return;
+      }
+
+      if (!attestationCheckbox.checked) {
+        setExplanationFeedback(
+          "Confirm that the explanations are your own mathematical reasoning.",
+          "error"
+        );
+
+        announce(
+          explanationFeedback.textContent
+        );
+
+        return;
+      }
+
+      state.explanationsComplete = true;
+      state.completedAt = new Date().toISOString();
+
+      setExplanationFeedback(
+        "Your explanations meet the activity requirements.",
+        "success"
+      );
+
+      showCompletion();
+    }
+
+    function formatElapsed(milliseconds) {
+      const totalSeconds =
+        Math.max(
+          0,
+          Math.floor(milliseconds / 1000)
+        );
+
+      const hours =
+        Math.floor(totalSeconds / 3600);
+
+      const minutes =
+        Math.floor(
+          (totalSeconds % 3600) / 60
+        );
+
+      const seconds =
+        totalSeconds % 60;
+
+      if (hours > 0) {
+        return [
+          hours,
+          String(minutes).padStart(2, "0"),
+          String(seconds).padStart(2, "0")
+        ].join(":");
+      }
+
+      return [
+        String(minutes).padStart(2, "0"),
+        String(seconds).padStart(2, "0")
+      ].join(":");
+    }
+
+    function updateTimer() {
+      if (!state.startedAt) {
+        return;
+      }
+
+      const endingTime =
+        state.completedAt
+          ? new Date(state.completedAt).getTime()
+          : Date.now();
+
+      const elapsed =
+        endingTime -
+        new Date(state.startedAt).getTime();
+
+      elapsedStatus.textContent =
+        formatElapsed(elapsed);
+    }
+
+    function formatDateTime(isoString) {
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          dateStyle: "medium",
+          timeStyle: "short"
+        }
+      ).format(new Date(isoString));
+    }
+
+    function formatDateOnly(isoString) {
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          dateStyle: "long"
+        }
+      ).format(new Date(isoString));
+    }
+
+    function simpleHash(text) {
+      let hash = 2166136261;
+
+      for (
+        let index = 0;
+        index < text.length;
+        index += 1
+      ) {
+        hash ^= text.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
+      }
+
+      return (
+        hash >>> 0
+      )
+        .toString(36)
+        .toUpperCase()
+        .padStart(7, "0");
+    }
+
+    function createVerificationCode() {
+      const source = [
+        state.studentName,
+        state.startedAt,
+        state.completedAt,
+        state.checks,
+        state.cards
+          .map(card => card.display)
+          .join("|"),
+        ACTIVITY_VERSION
+      ].join("::");
+
+      const hash =
+        simpleHash(source);
+
+      const dateCode =
+        new Date(state.completedAt)
+          .toISOString()
+          .slice(0, 10)
+          .replaceAll("-", "");
+
+      return `RN-${dateCode}-${hash}`;
+    }
+
+    function showCompletion() {
+      clearInterval(state.timerId);
+      updateTimer();
+
+      activityScreen.classList.add("hidden");
+      completionScreen.classList.remove("hidden");
+
+      const elapsed =
+        new Date(state.completedAt).getTime() -
+        new Date(state.startedAt).getTime();
+
+      document.getElementById(
+        "certificateName"
+      ).textContent = state.studentName;
+
+      document.getElementById(
+        "certificateDate"
+      ).textContent =
+        formatDateOnly(state.completedAt);
+
+      document.getElementById(
+        "certificateVersion"
+      ).textContent =
+        ACTIVITY_VERSION;
+
+      document.getElementById(
+        "certificateStart"
+      ).textContent =
+        formatDateTime(state.startedAt);
+
+      document.getElementById(
+        "certificateCompleted"
+      ).textContent =
+        formatDateTime(state.completedAt);
+
+      document.getElementById(
+        "certificateElapsed"
+      ).textContent =
+        formatElapsed(elapsed);
+
+      document.getElementById(
+        "certificateChecks"
+      ).textContent =
+        String(state.checks);
+
+      document.getElementById(
+        "certificateCode"
+      ).textContent =
+        createVerificationCode();
+
+      progressStatus.textContent =
+        "Complete";
+
+      saveState();
+
+      completionScreen.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      announce(
+        "Assessment complete. Your completion certificate is ready."
+      );
+    }
+
+    function announce(message) {
+      liveStatus.textContent = "";
+
+      window.setTimeout(
+        () => {
+          liveStatus.textContent = message;
+        },
+        30
+      );
+    }
+
+    function startActivity() {
+      const firstName =
+        firstNameInput.value.trim();
+
+      const lastName =
+        lastNameInput.value.trim();
+
+      if (
+        firstName.length < 2 ||
+        lastName.length < 2
+      ) {
+        welcomeError.textContent =
+          "Enter both your first and last name before beginning.";
+        return;
+      }
+
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.studentName =
+        `${firstName} ${lastName}`;
+
+      state.startedAt =
+        new Date().toISOString();
+
+      state.cards =
+        generateCards();
+
+      state.checks = 0;
+      state.sortComplete = false;
+      state.explanationsComplete = false;
+
+      welcomeScreen.classList.add("hidden");
+      activityScreen.classList.remove("hidden");
+
+      studentNameStatus.textContent =
+        state.studentName;
+
+      checksStatus.textContent = "0";
+      progressStatus.textContent = "Sorting";
+
+      renderCards();
+      updateTimer();
+
+      state.timerId =
+        window.setInterval(
+          updateTimer,
+          1000
+        );
+
+      saveState();
+      announce("Your randomized activity has begun.");
+    }
+
+    function saveState() {
+      try {
+        const savedState = {
+          studentName: state.studentName,
+          firstName: state.firstName,
+          lastName: state.lastName,
+          startedAt: state.startedAt,
+          completedAt: state.completedAt,
+          checks: state.checks,
+          cards: state.cards,
+          sortComplete: state.sortComplete,
+          explanationsComplete:
+            state.explanationsComplete
+        };
+
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(savedState)
+        );
+      } catch (error) {
+        console.warn(
+          "Local storage is unavailable.",
+          error
+        );
+      }
+    }
+
+    function restoreState() {
+      try {
+        const stored =
+          localStorage.getItem(STORAGE_KEY);
+
+        if (!stored) {
+          return false;
+        }
+
+        const saved =
+          JSON.parse(stored);
+
+        if (
+          !saved.studentName ||
+          !saved.startedAt ||
+          !Array.isArray(saved.cards) ||
+          saved.cards.length !== 15
+        ) {
+          return false;
+        }
+
+        Object.assign(state, saved);
+
+        studentNameStatus.textContent =
+          state.studentName;
+
+        checksStatus.textContent =
+          String(state.checks);
+
+        welcomeScreen.classList.add("hidden");
+
+        if (
+          state.explanationsComplete &&
+          state.completedAt
+        ) {
+          showCompletion();
+          return true;
+        }
+
+        activityScreen.classList.remove("hidden");
+        renderCards();
+
+        state.timerId =
+          window.setInterval(
+            updateTimer,
+            1000
+          );
+
+        updateTimer();
+
+        if (state.sortComplete) {
+          checkSortButton.disabled = true;
+          progressStatus.textContent =
+            "Explanations";
+
+          document
+            .querySelectorAll(".number-card")
+            .forEach(element => {
+              element.disabled = true;
+              element.draggable = false;
+            });
+
+          buildExplanationPrompts();
+          explanationPanel.classList.remove(
+            "hidden"
+          );
+        }
+
+        return true;
+      } catch (error) {
+        console.warn(
+          "Saved work could not be restored.",
+          error
+        );
+
+        return false;
+      }
+    }
+
+    function resetActivity() {
+      const confirmed =
+        window.confirm(
+          "Start a new randomized attempt? This will erase the current completion record on this device."
+        );
+
+      if (!confirmed) {
+        return;
+      }
+
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (error) {
+        console.warn(error);
+      }
+
+      window.location.reload();
+    }
+
+    beginButton.addEventListener(
+      "click",
+      startActivity
+    );
+
+    checkSortButton.addEventListener(
+      "click",
+      checkSort
+    );
+
+    returnSelectedButton.addEventListener(
+      "click",
+      () => {
+        if (state.selectedCardId) {
+          moveCard(
+            state.selectedCardId,
+            "bank"
+          );
+        }
+      }
+    );
+
+    submitExplanationButton.addEventListener(
+      "click",
+      submitExplanations
+    );
+
+    printButton.addEventListener(
+      "click",
+      () => window.print()
+    );
+
+    newAttemptButton.addEventListener(
+      "click",
+      resetActivity
+    );
+
+    setupDropZones();
+    restoreState();
+  </script>
+</body>
+</html>
