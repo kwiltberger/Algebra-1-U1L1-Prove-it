@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
+
   <title>
     Algebra 1 | Real Number Classification Challenge
   </title>
@@ -430,12 +432,6 @@
       min-height: 46px;
     }
 
-    .category-help {
-      margin: 4px 0 0;
-      color: var(--gray-700);
-      font-size: 0.85rem;
-    }
-
     .feedback-box {
       margin-top: 16px;
       padding: 15px;
@@ -459,21 +455,6 @@
       border-left: 6px solid var(--red);
       background: var(--light-red);
       color: #86170f;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 16px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: var(--gray-200);
-    }
-
-    .progress-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--green);
-      transition: width 0.2s ease;
     }
 
     .explanation-card {
@@ -519,9 +500,134 @@
       background: var(--light-yellow);
     }
 
+    /* Completion report */
+
+    .report-header {
+      padding: 24px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .report-header h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.35rem);
+    }
+
+    .report-header p {
+      margin: 7px 0 0;
+    }
+
+    .report-section {
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px solid var(--gray-200);
+      border-left: 6px solid var(--blue);
+      border-radius: 10px;
+      background: var(--white);
+    }
+
+    .report-section h2 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .report-section-green {
+      border-left-color: var(--green);
+    }
+
+    .report-section-purple {
+      border-left-color: var(--purple);
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .report-table th,
+    .report-table td {
+      padding: 10px;
+      border: 1px solid var(--gray-300);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .report-table th {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .report-table tbody tr:nth-child(even) {
+      background: var(--gray-100);
+    }
+
+    .report-value {
+      color: var(--navy);
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .response-card {
+      margin-top: 15px;
+      padding: 16px;
+      border: 1px solid var(--gray-300);
+      border-radius: 9px;
+      background: var(--gray-100);
+    }
+
+    .response-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .response-label {
+      margin: 14px 0 5px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .response-output {
+      min-height: 48px;
+      padding: 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 7px;
+      background: var(--white);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .completion-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .summary-item {
+      padding: 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      background: var(--gray-100);
+    }
+
+    .summary-item strong {
+      color: var(--navy);
+    }
+
+    .print-directions {
+      margin-top: 20px;
+      padding: 16px;
+      border-left: 6px solid var(--yellow);
+      border-radius: 9px;
+      background: var(--light-yellow);
+    }
+
+    /* Certificate */
+
     .certificate {
       position: relative;
       overflow: hidden;
+      margin-top: 28px;
       padding: 34px;
       border: 8px double var(--navy);
       border-radius: 14px;
@@ -649,7 +755,8 @@
       }
 
       .name-grid,
-      .certificate-grid {
+      .certificate-grid,
+      .completion-summary-grid {
         grid-template-columns: 1fr;
       }
 
@@ -664,16 +771,24 @@
       .number-card {
         min-width: 66px;
       }
+
+      .report-table {
+        font-size: 0.9rem;
+      }
     }
 
     @media print {
       @page {
         size: letter portrait;
-        margin: 0.4in;
+        margin: 0.45in;
       }
 
       body {
         background: var(--white);
+        color: #000000;
+        font-size: 10.5pt;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
       }
 
       body * {
@@ -688,15 +803,36 @@
       #completionScreen {
         position: absolute;
         inset: 0;
+        display: block !important;
         width: 100%;
         margin: 0;
         padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .report-header {
+        background: var(--navy) !important;
+        color: var(--white) !important;
+      }
+
+      .report-table th {
+        background: var(--navy) !important;
+        color: var(--white) !important;
+      }
+
+      .report-section,
+      .response-card,
+      .summary-item,
+      .report-table tr {
+        break-inside: avoid;
       }
 
       .certificate {
-        min-height: 9.4in;
-        box-shadow: none;
+        min-height: 9.2in;
+        page-break-before: always;
         break-inside: avoid;
+        box-shadow: none;
       }
 
       .no-print {
@@ -778,13 +914,19 @@
 
       <div class="callout callout-yellow">
         <h3>
-          Completion Requirements
+          Completion and Submission Requirements
         </h3>
 
         <p>
           You must correctly classify all 15 values and complete two
-          explanation questions. The completion certificate will not
-          appear until both parts are complete.
+          explanation questions. After you finish, the completion page
+          will display your complete work, including your classifications,
+          selected statements, typed explanations, and completion certificate.
+        </p>
+
+        <p>
+          Use the <strong>Print or Save as PDF</strong> button to create
+          one PDF for submission in Canvas.
         </p>
       </div>
 
@@ -1158,6 +1300,146 @@
       id="completionScreen"
       class="panel hidden"
     >
+      <header class="report-header">
+        <h1>
+          Algebra 1 Prove It! Submission
+        </h1>
+
+        <p>
+          Unit 1 Week 1 — Real Number Classification Challenge
+        </p>
+      </header>
+
+      <section class="report-section">
+        <h2>
+          Student and Completion Information
+        </h2>
+
+        <div class="completion-summary-grid">
+          <div class="summary-item">
+            <strong>Student:</strong>
+            <span id="reportStudentName"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Date:</strong>
+            <span id="reportDate"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Started:</strong>
+            <span id="reportStart"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Completed:</strong>
+            <span id="reportCompleted"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Completion Time:</strong>
+            <span id="reportElapsed"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Sort Checks:</strong>
+            <span id="reportChecks"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Classification Result:</strong>
+            15 of 15 correct
+          </div>
+
+          <div class="summary-item">
+            <strong>Explanations:</strong>
+            2 of 2 completed
+          </div>
+        </div>
+      </section>
+
+      <section class="report-section report-section-green">
+        <h2>
+          Part 1: Final Real-Number Classifications
+        </h2>
+
+        <p>
+          The table below shows every randomized value assigned to the
+          student and the most specific real-number set selected.
+        </p>
+
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th scope="col">
+                #
+              </th>
+
+              <th scope="col">
+                Randomized Value
+              </th>
+
+              <th scope="col">
+                Final Classification
+              </th>
+
+              <th scope="col">
+                Mathematical Reason
+              </th>
+            </tr>
+          </thead>
+
+          <tbody id="classificationReportBody"></tbody>
+        </table>
+      </section>
+
+      <section class="report-section report-section-purple">
+        <h2>
+          Part 2: Student Explanations
+        </h2>
+
+        <div
+          id="explanationReport"
+        ></div>
+
+        <div class="response-card">
+          <h3>
+            Student Attestation
+          </h3>
+
+          <div
+            id="reportAttestation"
+            class="response-output"
+          ></div>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <h2>
+          Completion Verification
+        </h2>
+
+        <div class="completion-summary-grid">
+          <div class="summary-item">
+            <strong>Activity Version:</strong>
+            <span id="reportVersion"></span>
+          </div>
+
+          <div class="summary-item">
+            <strong>Verification Code:</strong>
+            <span id="reportVerificationCode"></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="print-directions no-print">
+        <strong>Submission directions:</strong>
+        Select <em>Print or Save as PDF</em>. In the browser print window,
+        choose <em>Save as PDF</em> as the destination. Review the preview
+        to confirm that the classification table, typed explanations, and
+        certificate are all included. Save the PDF and submit it in Canvas.
+      </div>
+
       <div
         id="certificate"
         class="certificate"
@@ -1237,8 +1519,8 @@
           </div>
 
           <p class="submission-reminder">
-            Save this page as a PDF or take a clear screenshot, then
-            submit it to the Unit 1 Week 1 Prove It! assignment in Canvas.
+            This certificate is included with the student's complete
+            classification and explanation record.
           </p>
         </div>
       </div>
@@ -1266,8 +1548,9 @@
   <script>
     "use strict";
 
-    const ACTIVITY_VERSION = "U1W1-RNC-1.0";
-    const STORAGE_KEY = "algebra1-u1w1-real-number-prove-it";
+    const ACTIVITY_VERSION = "U1W1-RNC-1.1";
+    const STORAGE_KEY =
+      "algebra1-u1w1-real-number-prove-it";
 
     const state = {
       studentName: "",
@@ -1281,6 +1564,8 @@
       sortComplete: false,
       explanationsComplete: false,
       explanationPrompts: [],
+      explanationResponses: [],
+      attestationConfirmed: false,
       timerId: null
     };
 
@@ -1358,14 +1643,6 @@
 
     const liveStatus =
       document.getElementById("liveStatus");
-
-    const categories = [
-      "natural",
-      "whole",
-      "integer",
-      "rational",
-      "irrational"
-    ];
 
     const categoryLabels = {
       natural: "Natural Numbers",
@@ -1492,6 +1769,7 @@
       const tenths = randomInteger(1, 9);
       const hundredths = randomInteger(1, 9);
       const sign = Math.random() < 0.4 ? -1 : 1;
+
       const value =
         sign * (
           randomInteger(0, 8) +
@@ -1503,7 +1781,8 @@
         Number(value.toFixed(2)).toString();
 
       return {
-        id: `decimal-${index}-${display.replace(".", "-")}`,
+        id:
+          `decimal-${index}-${display.replace(".", "-")}`,
         display,
         accessibleText: display,
         category: "rational",
@@ -1517,11 +1796,13 @@
       const whole = randomInteger(0, 5);
       const digit = randomInteger(1, 9);
       const sign = Math.random() < 0.35 ? "-" : "";
+
       const display =
         `${sign}${whole}.<span style="text-decoration:overline;">${digit}</span>`;
 
       return {
-        id: `repeating-${index}-${sign}${whole}-${digit}`,
+        id:
+          `repeating-${index}-${sign}${whole}-${digit}`,
         display,
         accessibleText:
           `${sign}${whole} point ${digit} repeating`,
@@ -1550,7 +1831,8 @@
       return {
         id: `radical-${index}-${radicand}`,
         display: `√${radicand}`,
-        accessibleText: `square root of ${radicand}`,
+        accessibleText:
+          `square root of ${radicand}`,
         category: "irrational",
         location: "bank",
         explanation:
@@ -1560,6 +1842,7 @@
 
     function makePiCard(index) {
       const coefficient = randomInteger(1, 6);
+
       const display =
         coefficient === 1
           ? "π"
@@ -1606,16 +1889,21 @@
 
       const selected =
         examples[
-          randomInteger(0, examples.length - 1)
+          randomInteger(
+            0,
+            examples.length - 1
+          )
         ];
 
       return {
         id: `irrational-decimal-${index}`,
         display: selected.display,
-        accessibleText: selected.accessibleText,
+        accessibleText:
+          selected.accessibleText,
         category: "irrational",
         location: "bank",
-        explanation: selected.explanation
+        explanation:
+          selected.explanation
       };
     }
 
@@ -1675,10 +1963,12 @@
       element.className = "number-card";
       element.draggable = true;
       element.dataset.cardId = card.id;
+
       element.setAttribute(
         "aria-label",
         `${card.accessibleText}. Select to move this value.`
       );
+
       element.innerHTML = card.display;
 
       element.addEventListener(
@@ -1694,7 +1984,9 @@
             card.id
           );
 
-          event.dataTransfer.effectAllowed = "move";
+          event.dataTransfer.effectAllowed =
+            "move";
+
           selectCard(card.id);
         }
       );
@@ -1723,7 +2015,9 @@
               `[data-items-for="${card.location}"]`
             );
 
-          destination.appendChild(element);
+          if (destination) {
+            destination.appendChild(element);
+          }
         }
 
         if (card.id === state.selectedCardId) {
@@ -1748,7 +2042,8 @@
       if (state.selectedCardId) {
         const selectedCard =
           state.cards.find(
-            card => card.id === state.selectedCardId
+            card =>
+              card.id === state.selectedCardId
           );
 
         announce(
@@ -1761,7 +2056,9 @@
 
     function moveCard(cardId, location) {
       const card =
-        state.cards.find(item => item.id === cardId);
+        state.cards.find(
+          item => item.id === cardId
+        );
 
       if (!card) {
         return;
@@ -1769,6 +2066,7 @@
 
       card.location = location;
       state.selectedCardId = null;
+
       clearCardFeedbackStyles();
       renderCards();
 
@@ -1780,7 +2078,9 @@
     function setupDropZones() {
       const zones = [
         numberBank,
-        ...document.querySelectorAll(".drop-zone")
+        ...document.querySelectorAll(
+          ".drop-zone"
+        )
       ];
 
       zones.forEach(zone => {
@@ -1795,7 +2095,9 @@
         zone.addEventListener(
           "dragleave",
           () => {
-            zone.classList.remove("drag-over");
+            zone.classList.remove(
+              "drag-over"
+            );
           }
         );
 
@@ -1803,10 +2105,15 @@
           "drop",
           event => {
             event.preventDefault();
-            zone.classList.remove("drag-over");
+
+            zone.classList.remove(
+              "drag-over"
+            );
 
             const cardId =
-              event.dataTransfer.getData("text/plain");
+              event.dataTransfer.getData(
+                "text/plain"
+              );
 
             const destination =
               zone === numberBank
@@ -1821,7 +2128,9 @@
           "click",
           event => {
             if (
-              event.target.closest(".number-card")
+              event.target.closest(
+                ".number-card"
+              )
             ) {
               return;
             }
@@ -1858,6 +2167,7 @@
               announce(
                 "Select a number card first."
               );
+
               return;
             }
 
@@ -1886,11 +2196,15 @@
         });
     }
 
-    function setSortFeedback(message, type) {
+    function setSortFeedback(
+      message,
+      type
+    ) {
       sortFeedback.className =
         `feedback-box feedback-${type}`;
 
-      sortFeedback.textContent = message;
+      sortFeedback.textContent =
+        message;
     }
 
     function markCardResults() {
@@ -1909,10 +2223,14 @@
           "incorrect"
         );
 
-        if (card.location === card.category) {
+        if (
+          card.location === card.category
+        ) {
           element.classList.add("correct");
         } else {
-          element.classList.add("incorrect");
+          element.classList.add(
+            "incorrect"
+          );
         }
       });
     }
@@ -1920,7 +2238,8 @@
     function checkSort() {
       const unsorted =
         state.cards.filter(
-          card => card.location === "bank"
+          card =>
+            card.location === "bank"
         );
 
       if (unsorted.length > 0) {
@@ -1934,12 +2253,14 @@
       }
 
       state.checks += 1;
+
       checksStatus.textContent =
         String(state.checks);
 
       const incorrect =
         state.cards.filter(
-          card => card.location !== card.category
+          card =>
+            card.location !== card.category
         );
 
       markCardResults();
@@ -1975,7 +2296,10 @@
         });
 
       buildExplanationPrompts();
-      explanationPanel.classList.remove("hidden");
+      explanationPanel.classList.remove(
+        "hidden"
+      );
+
       explanationPanel.scrollIntoView({
         behavior: "smooth",
         block: "start"
@@ -1987,15 +2311,30 @@
     function chooseCardByCategory(category) {
       const options =
         state.cards.filter(
-          card => card.category === category
+          card =>
+            card.category === category
         );
 
       return options[
-        randomInteger(0, options.length - 1)
+        randomInteger(
+          0,
+          options.length - 1
+        )
       ];
     }
 
     function buildExplanationPrompts() {
+      if (
+        Array.isArray(
+          state.explanationPrompts
+        ) &&
+        state.explanationPrompts.length === 2
+      ) {
+        renderAllExplanationPrompts();
+        restoreExplanationInputs();
+        return;
+      }
+
       const rationalCard =
         chooseCardByCategory("rational");
 
@@ -2070,6 +2409,23 @@
         }
       ];
 
+      state.explanationResponses = [
+        {
+          selectedChoiceIndex: null,
+          writtenResponse: ""
+        },
+        {
+          selectedChoiceIndex: null,
+          writtenResponse: ""
+        }
+      ];
+
+      renderAllExplanationPrompts();
+      attachExplanationAutosave();
+      saveState();
+    }
+
+    function renderAllExplanationPrompts() {
       renderExplanation(
         explanationOne,
         state.explanationPrompts[0],
@@ -2081,6 +2437,8 @@
         state.explanationPrompts[1],
         2
       );
+
+      attachExplanationAutosave();
     }
 
     function renderExplanation(
@@ -2098,7 +2456,10 @@
                   name="${promptData.id}-choice"
                   value="${index}"
                 >
-                <span>${choice.text}</span>
+
+                <span>
+                  ${choice.text}
+                </span>
               </label>
             `
           )
@@ -2110,7 +2471,9 @@
         </h3>
 
         <p>
-          <strong>${promptData.prompt}</strong>
+          <strong>
+            ${promptData.prompt}
+          </strong>
         </p>
 
         <div
@@ -2139,6 +2502,169 @@
       `;
     }
 
+    function attachExplanationAutosave() {
+      state.explanationPrompts.forEach(
+        (promptData, promptIndex) => {
+          const radioButtons =
+            document.querySelectorAll(
+              `input[name="${promptData.id}-choice"]`
+            );
+
+          const textarea =
+            document.getElementById(
+              `${promptData.id}-text`
+            );
+
+          radioButtons.forEach(
+            radioButton => {
+              radioButton.addEventListener(
+                "change",
+                () => {
+                  ensureResponseObjects();
+
+                  state.explanationResponses[
+                    promptIndex
+                  ].selectedChoiceIndex =
+                    Number(
+                      radioButton.value
+                    );
+
+                  saveState();
+                }
+              );
+            }
+          );
+
+          if (textarea) {
+            textarea.addEventListener(
+              "input",
+              () => {
+                ensureResponseObjects();
+
+                state.explanationResponses[
+                  promptIndex
+                ].writtenResponse =
+                  textarea.value;
+
+                saveState();
+              }
+            );
+          }
+        }
+      );
+
+      attestationCheckbox.addEventListener(
+        "change",
+        () => {
+          state.attestationConfirmed =
+            attestationCheckbox.checked;
+
+          saveState();
+        }
+      );
+    }
+
+    function ensureResponseObjects() {
+      if (
+        !Array.isArray(
+          state.explanationResponses
+        ) ||
+        state.explanationResponses.length !== 2
+      ) {
+        state.explanationResponses = [
+          {
+            selectedChoiceIndex: null,
+            writtenResponse: ""
+          },
+          {
+            selectedChoiceIndex: null,
+            writtenResponse: ""
+          }
+        ];
+      }
+    }
+
+    function restoreExplanationInputs() {
+      ensureResponseObjects();
+
+      state.explanationPrompts.forEach(
+        (promptData, promptIndex) => {
+          const response =
+            state.explanationResponses[
+              promptIndex
+            ];
+
+          const textarea =
+            document.getElementById(
+              `${promptData.id}-text`
+            );
+
+          if (textarea) {
+            textarea.value =
+              response.writtenResponse || "";
+          }
+
+          if (
+            response.selectedChoiceIndex !==
+              null &&
+            response.selectedChoiceIndex !==
+              undefined
+          ) {
+            const selectedRadio =
+              document.querySelector(
+                `input[name="${promptData.id}-choice"][value="${response.selectedChoiceIndex}"]`
+              );
+
+            if (selectedRadio) {
+              selectedRadio.checked = true;
+            }
+          }
+        }
+      );
+
+      attestationCheckbox.checked =
+        Boolean(
+          state.attestationConfirmed
+        );
+    }
+
+    function captureExplanationResponses() {
+      ensureResponseObjects();
+
+      state.explanationPrompts.forEach(
+        (promptData, promptIndex) => {
+          const selectedChoice =
+            document.querySelector(
+              `input[name="${promptData.id}-choice"]:checked`
+            );
+
+          const textarea =
+            document.getElementById(
+              `${promptData.id}-text`
+            );
+
+          state.explanationResponses[
+            promptIndex
+          ] = {
+            selectedChoiceIndex:
+              selectedChoice
+                ? Number(
+                    selectedChoice.value
+                  )
+                : null,
+
+            writtenResponse:
+              textarea
+                ? textarea.value
+                : ""
+          };
+        }
+      );
+
+      state.attestationConfirmed =
+        attestationCheckbox.checked;
+    }
+
     function normalizeText(text) {
       return text
         .toLowerCase()
@@ -2146,7 +2672,9 @@
         .trim();
     }
 
-    function validateExplanation(promptData) {
+    function validateExplanation(
+      promptData
+    ) {
       const selectedChoice =
         document.querySelector(
           `input[name="${promptData.id}-choice"]:checked`
@@ -2158,7 +2686,9 @@
         );
 
       const response =
-        normalizeText(textarea.value);
+        normalizeText(
+          textarea.value
+        );
 
       if (!selectedChoice) {
         return {
@@ -2172,7 +2702,9 @@
         Number(selectedChoice.value);
 
       if (
-        !promptData.choices[selectedIndex].correct
+        !promptData.choices[
+          selectedIndex
+        ].correct
       ) {
         return {
           valid: false,
@@ -2191,7 +2723,8 @@
 
       const includesKeyword =
         promptData.requiredKeywords.some(
-          keyword => response.includes(keyword)
+          keyword =>
+            response.includes(keyword)
         );
 
       if (!includesKeyword) {
@@ -2220,6 +2753,8 @@
     }
 
     function submitExplanations() {
+      captureExplanationResponses();
+
       const firstResult =
         validateExplanation(
           state.explanationPrompts[0]
@@ -2280,25 +2815,34 @@
       }
 
       state.explanationsComplete = true;
-      state.completedAt = new Date().toISOString();
+      state.attestationConfirmed = true;
+      state.completedAt =
+        new Date().toISOString();
 
       setExplanationFeedback(
         "Your explanations meet the activity requirements.",
         "success"
       );
 
+      saveState();
       showCompletion();
     }
 
-    function formatElapsed(milliseconds) {
+    function formatElapsed(
+      milliseconds
+    ) {
       const totalSeconds =
         Math.max(
           0,
-          Math.floor(milliseconds / 1000)
+          Math.floor(
+            milliseconds / 1000
+          )
         );
 
       const hours =
-        Math.floor(totalSeconds / 3600);
+        Math.floor(
+          totalSeconds / 3600
+        );
 
       const minutes =
         Math.floor(
@@ -2311,14 +2855,26 @@
       if (hours > 0) {
         return [
           hours,
-          String(minutes).padStart(2, "0"),
-          String(seconds).padStart(2, "0")
+          String(minutes).padStart(
+            2,
+            "0"
+          ),
+          String(seconds).padStart(
+            2,
+            "0"
+          )
         ].join(":");
       }
 
       return [
-        String(minutes).padStart(2, "0"),
-        String(seconds).padStart(2, "0")
+        String(minutes).padStart(
+          2,
+          "0"
+        ),
+        String(seconds).padStart(
+          2,
+          "0"
+        )
       ].join(":");
     }
 
@@ -2329,34 +2885,46 @@
 
       const endingTime =
         state.completedAt
-          ? new Date(state.completedAt).getTime()
+          ? new Date(
+              state.completedAt
+            ).getTime()
           : Date.now();
 
       const elapsed =
         endingTime -
-        new Date(state.startedAt).getTime();
+        new Date(
+          state.startedAt
+        ).getTime();
 
       elapsedStatus.textContent =
         formatElapsed(elapsed);
     }
 
-    function formatDateTime(isoString) {
+    function formatDateTime(
+      isoString
+    ) {
       return new Intl.DateTimeFormat(
         "en-US",
         {
           dateStyle: "medium",
           timeStyle: "short"
         }
-      ).format(new Date(isoString));
+      ).format(
+        new Date(isoString)
+      );
     }
 
-    function formatDateOnly(isoString) {
+    function formatDateOnly(
+      isoString
+    ) {
       return new Intl.DateTimeFormat(
         "en-US",
         {
           dateStyle: "long"
         }
-      ).format(new Date(isoString));
+      ).format(
+        new Date(isoString)
+      );
     }
 
     function simpleHash(text) {
@@ -2368,7 +2936,10 @@
         index += 1
       ) {
         hash ^= text.charCodeAt(index);
-        hash = Math.imul(hash, 16777619);
+        hash = Math.imul(
+          hash,
+          16777619
+        );
       }
 
       return (
@@ -2380,14 +2951,26 @@
     }
 
     function createVerificationCode() {
+      const explanationSource =
+        state.explanationResponses
+          .map(response => [
+            response.selectedChoiceIndex,
+            response.writtenResponse
+          ].join(":"))
+          .join("|");
+
       const source = [
         state.studentName,
         state.startedAt,
         state.completedAt,
         state.checks,
         state.cards
-          .map(card => card.display)
+          .map(
+            card =>
+              `${card.display}:${card.location}`
+          )
           .join("|"),
+        explanationSource,
         ACTIVITY_VERSION
       ].join("::");
 
@@ -2395,7 +2978,9 @@
         simpleHash(source);
 
       const dateCode =
-        new Date(state.completedAt)
+        new Date(
+          state.completedAt
+        )
           .toISOString()
           .slice(0, 10)
           .replaceAll("-", "");
@@ -2403,25 +2988,300 @@
       return `RN-${dateCode}-${hash}`;
     }
 
-    function showCompletion() {
-      clearInterval(state.timerId);
-      updateTimer();
+    function renderClassificationReport() {
+      const reportBody =
+        document.getElementById(
+          "classificationReportBody"
+        );
 
-      activityScreen.classList.add("hidden");
-      completionScreen.classList.remove("hidden");
+      reportBody.innerHTML = "";
 
+      const categoryOrder = {
+        natural: 1,
+        whole: 2,
+        integer: 3,
+        rational: 4,
+        irrational: 5
+      };
+
+      const sortedCards =
+        [...state.cards].sort(
+          (first, second) => {
+            const categoryDifference =
+              categoryOrder[
+                first.location
+              ] -
+              categoryOrder[
+                second.location
+              ];
+
+            if (
+              categoryDifference !== 0
+            ) {
+              return categoryDifference;
+            }
+
+            return first.accessibleText
+              .localeCompare(
+                second.accessibleText
+              );
+          }
+        );
+
+      sortedCards.forEach(
+        (card, index) => {
+          const row =
+            document.createElement("tr");
+
+          const numberCell =
+            document.createElement("td");
+
+          numberCell.textContent =
+            String(index + 1);
+
+          const valueCell =
+            document.createElement("td");
+
+          valueCell.className =
+            "report-value";
+
+          valueCell.innerHTML =
+            card.display;
+
+          const classificationCell =
+            document.createElement("td");
+
+          classificationCell.textContent =
+            categoryLabels[
+              card.location
+            ];
+
+          const explanationCell =
+            document.createElement("td");
+
+          explanationCell.textContent =
+            card.explanation;
+
+          row.append(
+            numberCell,
+            valueCell,
+            classificationCell,
+            explanationCell
+          );
+
+          reportBody.appendChild(row);
+        }
+      );
+    }
+
+    function renderExplanationReport() {
+      const report =
+        document.getElementById(
+          "explanationReport"
+        );
+
+      report.innerHTML = "";
+
+      ensureResponseObjects();
+
+      state.explanationPrompts.forEach(
+        (
+          promptData,
+          promptIndex
+        ) => {
+          const response =
+            state.explanationResponses[
+              promptIndex
+            ];
+
+          const selectedChoice =
+            promptData.choices[
+              response.selectedChoiceIndex
+            ];
+
+          const card =
+            document.createElement("section");
+
+          card.className =
+            "response-card";
+
+          const heading =
+            document.createElement("h3");
+
+          heading.textContent =
+            `Explanation ${promptIndex + 1}`;
+
+          const valueLabel =
+            document.createElement("p");
+
+          valueLabel.className =
+            "response-label";
+
+          valueLabel.textContent =
+            "Assigned value:";
+
+          const valueOutput =
+            document.createElement("div");
+
+          valueOutput.className =
+            "response-output report-value";
+
+          valueOutput.innerHTML =
+            promptData.card.display;
+
+          const promptLabel =
+            document.createElement("p");
+
+          promptLabel.className =
+            "response-label";
+
+          promptLabel.textContent =
+            "Prompt:";
+
+          const promptOutput =
+            document.createElement("div");
+
+          promptOutput.className =
+            "response-output";
+
+          promptOutput.textContent =
+            promptData.prompt;
+
+          const choiceLabel =
+            document.createElement("p");
+
+          choiceLabel.className =
+            "response-label";
+
+          choiceLabel.textContent =
+            "Selected mathematical statement:";
+
+          const choiceOutput =
+            document.createElement("div");
+
+          choiceOutput.className =
+            "response-output";
+
+          choiceOutput.textContent =
+            selectedChoice
+              ? selectedChoice.text
+              : "No statement recorded.";
+
+          const writtenLabel =
+            document.createElement("p");
+
+          writtenLabel.className =
+            "response-label";
+
+          writtenLabel.textContent =
+            "Student's written explanation:";
+
+          const writtenOutput =
+            document.createElement("div");
+
+          writtenOutput.className =
+            "response-output";
+
+          writtenOutput.textContent =
+            response.writtenResponse ||
+            "No written response recorded.";
+
+          card.append(
+            heading,
+            valueLabel,
+            valueOutput,
+            promptLabel,
+            promptOutput,
+            choiceLabel,
+            choiceOutput,
+            writtenLabel,
+            writtenOutput
+          );
+
+          report.appendChild(card);
+        }
+      );
+
+      document.getElementById(
+        "reportAttestation"
+      ).textContent =
+        state.attestationConfirmed
+          ? "Confirmed: I confirm that these explanations are my own mathematical reasoning."
+          : "Attestation was not recorded.";
+    }
+
+    function populateCompletionReport() {
       const elapsed =
-        new Date(state.completedAt).getTime() -
-        new Date(state.startedAt).getTime();
+        new Date(
+          state.completedAt
+        ).getTime() -
+        new Date(
+          state.startedAt
+        ).getTime();
+
+      const verificationCode =
+        createVerificationCode();
+
+      document.getElementById(
+        "reportStudentName"
+      ).textContent =
+        state.studentName;
+
+      document.getElementById(
+        "reportDate"
+      ).textContent =
+        formatDateOnly(
+          state.completedAt
+        );
+
+      document.getElementById(
+        "reportStart"
+      ).textContent =
+        formatDateTime(
+          state.startedAt
+        );
+
+      document.getElementById(
+        "reportCompleted"
+      ).textContent =
+        formatDateTime(
+          state.completedAt
+        );
+
+      document.getElementById(
+        "reportElapsed"
+      ).textContent =
+        formatElapsed(elapsed);
+
+      document.getElementById(
+        "reportChecks"
+      ).textContent =
+        String(state.checks);
+
+      document.getElementById(
+        "reportVersion"
+      ).textContent =
+        ACTIVITY_VERSION;
+
+      document.getElementById(
+        "reportVerificationCode"
+      ).textContent =
+        verificationCode;
+
+      renderClassificationReport();
+      renderExplanationReport();
 
       document.getElementById(
         "certificateName"
-      ).textContent = state.studentName;
+      ).textContent =
+        state.studentName;
 
       document.getElementById(
         "certificateDate"
       ).textContent =
-        formatDateOnly(state.completedAt);
+        formatDateOnly(
+          state.completedAt
+        );
 
       document.getElementById(
         "certificateVersion"
@@ -2431,12 +3291,16 @@
       document.getElementById(
         "certificateStart"
       ).textContent =
-        formatDateTime(state.startedAt);
+        formatDateTime(
+          state.startedAt
+        );
 
       document.getElementById(
         "certificateCompleted"
       ).textContent =
-        formatDateTime(state.completedAt);
+        formatDateTime(
+          state.completedAt
+        );
 
       document.getElementById(
         "certificateElapsed"
@@ -2451,11 +3315,34 @@
       document.getElementById(
         "certificateCode"
       ).textContent =
-        createVerificationCode();
+        verificationCode;
+    }
+
+    function showCompletion() {
+      if (state.timerId) {
+        clearInterval(
+          state.timerId
+        );
+      }
+
+      updateTimer();
+
+      welcomeScreen.classList.add(
+        "hidden"
+      );
+
+      activityScreen.classList.add(
+        "hidden"
+      );
+
+      completionScreen.classList.remove(
+        "hidden"
+      );
 
       progressStatus.textContent =
         "Complete";
 
+      populateCompletionReport();
       saveState();
 
       completionScreen.scrollIntoView({
@@ -2464,7 +3351,7 @@
       });
 
       announce(
-        "Assessment complete. Your completion certificate is ready."
+        "Assessment complete. Your full submission report and completion certificate are ready."
       );
     }
 
@@ -2473,7 +3360,8 @@
 
       window.setTimeout(
         () => {
-          liveStatus.textContent = message;
+          liveStatus.textContent =
+            message;
         },
         30
       );
@@ -2492,32 +3380,43 @@
       ) {
         welcomeError.textContent =
           "Enter both your first and last name before beginning.";
+
         return;
       }
 
       state.firstName = firstName;
       state.lastName = lastName;
+
       state.studentName =
         `${firstName} ${lastName}`;
 
       state.startedAt =
         new Date().toISOString();
 
-      state.cards =
-        generateCards();
-
+      state.completedAt = null;
+      state.cards = generateCards();
       state.checks = 0;
       state.sortComplete = false;
       state.explanationsComplete = false;
+      state.explanationPrompts = [];
+      state.explanationResponses = [];
+      state.attestationConfirmed = false;
 
-      welcomeScreen.classList.add("hidden");
-      activityScreen.classList.remove("hidden");
+      welcomeScreen.classList.add(
+        "hidden"
+      );
+
+      activityScreen.classList.remove(
+        "hidden"
+      );
 
       studentNameStatus.textContent =
         state.studentName;
 
       checksStatus.textContent = "0";
-      progressStatus.textContent = "Sorting";
+
+      progressStatus.textContent =
+        "Sorting";
 
       renderCards();
       updateTimer();
@@ -2529,22 +3428,50 @@
         );
 
       saveState();
-      announce("Your randomized activity has begun.");
+
+      announce(
+        "Your randomized activity has begun."
+      );
     }
 
     function saveState() {
       try {
         const savedState = {
-          studentName: state.studentName,
-          firstName: state.firstName,
-          lastName: state.lastName,
-          startedAt: state.startedAt,
-          completedAt: state.completedAt,
-          checks: state.checks,
-          cards: state.cards,
-          sortComplete: state.sortComplete,
+          studentName:
+            state.studentName,
+
+          firstName:
+            state.firstName,
+
+          lastName:
+            state.lastName,
+
+          startedAt:
+            state.startedAt,
+
+          completedAt:
+            state.completedAt,
+
+          checks:
+            state.checks,
+
+          cards:
+            state.cards,
+
+          sortComplete:
+            state.sortComplete,
+
           explanationsComplete:
-            state.explanationsComplete
+            state.explanationsComplete,
+
+          explanationPrompts:
+            state.explanationPrompts,
+
+          explanationResponses:
+            state.explanationResponses,
+
+          attestationConfirmed:
+            state.attestationConfirmed
         };
 
         localStorage.setItem(
@@ -2562,7 +3489,9 @@
     function restoreState() {
       try {
         const stored =
-          localStorage.getItem(STORAGE_KEY);
+          localStorage.getItem(
+            STORAGE_KEY
+          );
 
         if (!stored) {
           return false;
@@ -2574,13 +3503,20 @@
         if (
           !saved.studentName ||
           !saved.startedAt ||
-          !Array.isArray(saved.cards) ||
+          !Array.isArray(
+            saved.cards
+          ) ||
           saved.cards.length !== 15
         ) {
           return false;
         }
 
-        Object.assign(state, saved);
+        Object.assign(
+          state,
+          saved
+        );
+
+        ensureResponseObjects();
 
         studentNameStatus.textContent =
           state.studentName;
@@ -2588,7 +3524,9 @@
         checksStatus.textContent =
           String(state.checks);
 
-        welcomeScreen.classList.add("hidden");
+        welcomeScreen.classList.add(
+          "hidden"
+        );
 
         if (
           state.explanationsComplete &&
@@ -2598,7 +3536,10 @@
           return true;
         }
 
-        activityScreen.classList.remove("hidden");
+        activityScreen.classList.remove(
+          "hidden"
+        );
+
         renderCards();
 
         state.timerId =
@@ -2610,21 +3551,31 @@
         updateTimer();
 
         if (state.sortComplete) {
-          checkSortButton.disabled = true;
+          checkSortButton.disabled =
+            true;
+
           progressStatus.textContent =
             "Explanations";
 
           document
-            .querySelectorAll(".number-card")
+            .querySelectorAll(
+              ".number-card"
+            )
             .forEach(element => {
               element.disabled = true;
               element.draggable = false;
             });
 
           buildExplanationPrompts();
+
           explanationPanel.classList.remove(
             "hidden"
           );
+
+          restoreExplanationInputs();
+        } else {
+          progressStatus.textContent =
+            "Sorting";
         }
 
         return true;
@@ -2641,7 +3592,7 @@
     function resetActivity() {
       const confirmed =
         window.confirm(
-          "Start a new randomized attempt? This will erase the current completion record on this device."
+          "Start a new randomized attempt? This will erase the current completion record and all saved responses on this device."
         );
 
       if (!confirmed) {
@@ -2649,7 +3600,9 @@
       }
 
       try {
-        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(
+          STORAGE_KEY
+        );
       } catch (error) {
         console.warn(error);
       }
@@ -2686,7 +3639,10 @@
 
     printButton.addEventListener(
       "click",
-      () => window.print()
+      () => {
+        populateCompletionReport();
+        window.print();
+      }
     );
 
     newAttemptButton.addEventListener(
